@@ -33,13 +33,33 @@ export function LoginForm({
     setError(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
       if (error) throw error;
-      // Update this route to redirect to an authenticated route. The user already has an active session.
-      router.push("/protected");
+
+      // Get user profile to determine role-based redirect
+      if (data.user) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", data.user.id)
+          .single();
+
+        // Redirect based on user role
+        if (profile?.role === "admin") {
+          router.push("/admin");
+        } else if (profile?.role === "stasher") {
+          router.push("/stasher");
+        } else if (profile?.role === "pending_stasher") {
+          router.push("/pending");
+        } else {
+          router.push("/traveler");
+        }
+      } else {
+        router.push("/protected");
+      }
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
@@ -51,9 +71,9 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle className="text-2xl">Welcome back to Stash</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Sign in to access your storage account
           </CardDescription>
         </CardHeader>
         <CardContent>

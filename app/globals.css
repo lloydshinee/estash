@@ -66,3 +66,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px));
+  }
+  .pl-safe {
+    padding-left: calc(env(safe-area-inset-left, 0px));
+  }
+  .pr-safe {
+    padding-right: calc(env(safe-area-inset-right, 0px));
+  }
+  .pt-safe {
+    padding-top: calc(env(safe-area-inset-top, 0px));
+  }
+  .min-h-screen-safe {
+    min-height: calc(100vh - env(safe-area-inset-bottom, 0px));
+  }
+}
