@@ -1,12 +1,13 @@
 # Stash - Luggage Storage Platform
 
-A Next.js application that connects travelers with verified hosts offering secure luggage storage services.
+A Next.js application that connects many travelers with verified hosts offering secure luggage storage services.
 
 ## 🎯 Project Overview
 
 **Stash** allows travelers to temporarily store their belongings with verified hosts (Stashers) who provide secure storage spaces. All services are booked hourly with cash payment for the MVP.
 
 ### MVP Features
+
 - **Luggage storage only** (parking and rooms in Phase 2)
 - **Walk-in service** (no delivery for MVP)
 - **Cash payment** (online payments in Phase 2)
@@ -45,6 +46,7 @@ PROGRESS.md           # Development progress tracker
 ## 🗄️ Database Schema
 
 ### Core Tables
+
 - **profiles** - User information and roles (traveler, pending_stasher, stasher, admin)
 - **stasher_applications** - Verification applications with photos and documents
 - **stash_listings** - Storage location listings with pricing and amenities
@@ -55,11 +57,13 @@ PROGRESS.md           # Development progress tracker
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 18+
 - Supabase account
 - MCP server configured
 
 ### Installation
+
 ```bash
 # Clone the repository
 git clone <repository-url>
@@ -77,6 +81,7 @@ npm run dev
 ```
 
 ### Database Setup
+
 ```bash
 # Use MCP tools to create schema
 # See AGENTS.md for detailed instructions
@@ -91,6 +96,7 @@ npx supabase gen types typescript --local > types/database.ts
 ## 👥 User Roles & Workflows
 
 ### Traveler Flow
+
 1. Sign up / Sign in
 2. Browse nearby storage locations
 3. View stash details and reviews
@@ -102,6 +108,7 @@ npx supabase gen types typescript --local > types/database.ts
 9. Leave review
 
 ### Stasher Flow
+
 1. Register as stasher
 2. Submit verification application
 3. Wait for admin approval
@@ -112,6 +119,7 @@ npx supabase gen types typescript --local > types/database.ts
 8. Receive payments (cash)
 
 ### Admin Flow
+
 1. Review stasher applications
 2. Approve/reject with notes
 3. Review storage listings
@@ -121,6 +129,7 @@ npx supabase gen types typescript --local > types/database.ts
 ## 🔧 Development
 
 ### Available Scripts
+
 ```bash
 npm run dev          # Start development server
 npm run build        # Build for production
@@ -130,9 +139,11 @@ npm run type-check   # Run TypeScript checks
 ```
 
 ### MCP Database Operations
+
 See [AGENTS.md](./AGENTS.md) for comprehensive database management using MCP tools.
 
 ### Key Commands
+
 ```bash
 # Test MCP connection
 mcp0_get_project_url()
@@ -163,10 +174,12 @@ See [PROGRESS.md](./PROGRESS.md) for detailed development progress and milestone
 ## 🧪 Testing
 
 ### Test Data
+
 Use MCP tools to insert test data:
+
 ```sql
 -- Create test users
-INSERT INTO profiles (id, role, full_name) VALUES 
+INSERT INTO profiles (id, role, full_name) VALUES
 ('test-traveler', 'traveler', 'Test Traveler'),
 ('test-stasher', 'stasher', 'Test Stasher');
 
@@ -178,6 +191,7 @@ VALUES ('test-stasher', 'Downtown Storage', '123 Main St', 40.7128, -74.0060, 5.
 ## 🚀 Deployment
 
 ### Vercel Deployment
+
 ```bash
 # Deploy to Vercel
 npx vercel
@@ -188,6 +202,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### Supabase Production
+
 1. Create production Supabase project
 2. Apply migrations using MCP tools
 3. Configure RLS policies
@@ -196,18 +211,21 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ## 📈 Roadmap
 
 ### Phase 1: MVP (Week 1-4)
+
 - [x] Database schema and documentation
 - [ ] Authentication and user management
 - [ ] Basic booking system
 - [ ] Admin approval workflows
 
 ### Phase 2: Enhanced Features
+
 - [ ] Vehicle parking support
 - [ ] Stay-in room bookings
 - [ ] Pickup and delivery service
 - [ ] Online payment integration
 
 ### Phase 3: Advanced Features
+
 - [ ] Real-time notifications
 - [ ] Chat system
 - [ ] Advanced analytics
@@ -230,10 +248,11 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ## 📞 Support
 
 For development questions, refer to:
+
 - AGENTS.md for database operations
 - Supabase documentation for API usage
 - Next.js documentation for frontend development
 
 ---
 
-*Built with ❤️ using Next.js, Supabase, and MCP tools*
+_Built with ❤️ using Next.js, Supabase, and MCP tools_
